@@ -30,13 +30,14 @@ function bit_portfolio_create_post_type_works()
             // kvieciama teksto iregistravimo i sistema funkcija
         ),
         'public' => true,
-        'has_archive' => true, //jinai leidzia kurti musu post type kategorijas,
+        'has_archive' => true, // leidzia kurti musu post type kategorijas,
         'rewrite' => array('slug' => 'works'), //post type sukuria nuoroda /works
         'show_in_rest' => true
     ));
 }
-
 add_action('init', 'bit_portfolio_create_post_type_works');
+
+// sukuria mygtuka customize opcijom
 
 function bit_portfolio_customize_background_color($wp_customize)
 {
@@ -88,3 +89,348 @@ function bit_portfolio_customize_background_color($wp_customize)
     )));
 }
 add_action('customize_register', 'bit_portfolio_customize_background_color');
+
+//customize header
+
+function bit_portfolio_customize_header($wp_customize)
+{
+    $wp_customize->add_section('bit_portfolio_header', array(
+        'title' => __('Header settings'),
+        'priority' => 100
+    ));
+
+    // logo
+
+    $wp_customize->add_setting('bit_portofolio_header_logo', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_logo', array(
+        'label' => __("Logo"),
+        'description' => __("Enter blogo"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // copyrightText
+
+    $wp_customize->add_setting('bit_portofolio_header_copyright', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_copyright', array(
+        'label' => __("Copyright text"),
+        'description' => __("Enter text"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // copyright text before date
+
+    $wp_customize->add_setting('bit_portofolio_header_copyright_beforeDate', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_copyright_beforeDate', array(
+        'label' => __("Copyright text"),
+        'description' => __("Enter text"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // change copyright text after date
+
+    $wp_customize->add_setting('bit_portofolio_header_copyright_afterDate', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_copyright_afterDate', array(
+        'label' => __("Copyright text"),
+        'description' => __("Enter text"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // link target
+
+    $wp_customize->add_setting('bit_portofolio_header_linkTarget', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_linkTarget', array(
+        'label' => __("Target Link"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'checkbox',
+        'priority' => 10
+    )));
+
+    // facebook
+
+    $wp_customize->add_setting('bit_portofolio_header_facebook', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_facebook', array(
+        'label' => __("Facebook link"),
+        'description' => __("Enter link"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // twitter
+
+    $wp_customize->add_setting('bit_portofolio_header_twitter', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_twitter', array(
+        'label' => __("Twitter link"),
+        'description' => __("Enter link"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // ig
+
+    $wp_customize->add_setting('bit_portofolio_header_instagram', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_instagram', array(
+        'label' => __("Instagram link"),
+        'description' => __("Enter link"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // linkedin
+
+    $wp_customize->add_setting('bit_portofolio_header_linkedin', array(
+        'default' => 'logo',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_header_linkedin', array(
+        'label' => __("Linkedin link"),
+        'description' => __("Enter link"),
+        'section' => 'bit_portfolio_header',
+        'type' => 'text',
+        'priority' => 10
+    )));
+}
+add_action('customize_register', 'bit_portfolio_customize_header');
+
+//customize footer
+
+function bit_portfolio_customize_footer($wp_customize)
+{
+    $wp_customize->add_section('bit_portfolio_footer', array(
+        'title' => __('Footer settings'),
+        'priority' => 100
+    ));
+
+    // Menu title #1
+
+    $wp_customize->add_setting('bit_portofolio_footer_menuTitle1', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_menuTitle1', array(
+        'label' => __("Menu title #1"),
+        'description' => __("Enter title"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Menu title #2
+
+    $wp_customize->add_setting('bit_portofolio_footer_menuTitle2', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_menuTitle2', array(
+        'label' => __("Menu title #2"),
+        'description' => __("Enter title"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Contact title
+
+    $wp_customize->add_setting('bit_portofolio_footer_contact_title', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_contact_title', array(
+        'label' => __("Contact title"),
+        'description' => __("Enter title"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Contact adress
+
+    $wp_customize->add_setting('bit_portofolio_footer_contact_adress', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_contact_adress', array(
+        'label' => __("Contact adress"),
+        'description' => __("Enter adress"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Contact phone
+
+    $wp_customize->add_setting('bit_portofolio_footer_contact_phone', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_contact_phone', array(
+        'label' => __("Contact phone"),
+        'description' => __("Enter phone number"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Contact email
+
+    $wp_customize->add_setting('bit_portofolio_footer_contact_email', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_contact_email', array(
+        'label' => __("Contact email"),
+        'description' => __("Enter email"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Copyright before
+
+    $wp_customize->add_setting('bit_portofolio_footer_contact_copyrightBefore', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_contact_copyrightBefore', array(
+        'label' => __("Copyright before"),
+        'description' => __("Enter text"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // Contact after
+
+    $wp_customize->add_setting('bit_portofolio_footer_contact_copyrightAfter', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_footer_contact_copyrightAfter', array(
+        'label' => __("Copyright after"),
+        'description' => __("Enter text"),
+        'section' => 'bit_portfolio_footer',
+        'type' => 'text',
+        'priority' => 10
+    )));
+}
+add_action('customize_register', 'bit_portfolio_customize_footer');
+
+//customize 404
+
+function bit_portfolio_customize_404($wp_customize)
+{
+    $wp_customize->add_section('bit_portfolio_404', array(
+        'title' => __('404 settings'),
+        'priority' => 100
+    ));
+
+    // title
+
+    $wp_customize->add_setting('bit_portofolio_404_title', array(
+        'default' => 'title',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_404_title', array(
+        'label' => __("Title"),
+        'description' => __("Enter title name"),
+        'section' => 'bit_portfolio_404',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    //desc
+
+    $wp_customize->add_setting('bit_portofolio_404_description', array(
+        'default' => 'description',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_404_description', array(
+        'label' => __("Description"),
+        'description' => __("Enter description"),
+        'section' => 'bit_portfolio_404',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    //link
+
+    $wp_customize->add_setting('bit_portofolio_404_link', array(
+        'default' => 'link',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Control($wp_customize, 'bit_portofolio_404_link', array(
+        'label' => __("Link"),
+        'description' => __("Enter Link"),
+        'section' => 'bit_portfolio_404',
+        'type' => 'text',
+        'priority' => 10
+    )));
+
+    // bg image
+
+    $wp_customize->add_setting('bit_portofolio_404_img', array(
+        'default' => '',
+        'sanitize_callback' => ''
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'bit_portofolio_404_img', array(
+        'label' => '404 Image',
+        'description' => 'Select your image',
+        'section' => 'bit_portfolio_404'
+    )));
+}
+add_action('customize_register', 'bit_portfolio_customize_404');
